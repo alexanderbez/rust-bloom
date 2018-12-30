@@ -2,7 +2,7 @@
 
 all: test bench build
 
-tests:
+test:
 	@cargo test
 
 bench:
