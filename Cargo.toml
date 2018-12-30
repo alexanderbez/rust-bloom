@@ -1,0 +1,19 @@
+[package]
+name = "rsbloom"
+version = "0.1.0"
+authors = ["Aleksandr Bezobchuk <aleks.bezobchuk@gmail.com>"]
+description = "A simple bloom filter implementation in Rust"
+homepage = "https://github.com/alexanderbez/rsbloom"
+documentation = "https://docs.rs/rsbloom/"
+edition = "2018"
+readme = "README.md"
+keywords = ["bloom", "filter", "bloomfilter", "bloomfilters"]
+license = "MIT"
+
+[lib]
+name = "rsbloom"
+
+[dependencies]
+bit-vec = "0.5.0"
+fasthash = "0.3"
+rand = "0.6.1"
