@@ -35,24 +35,24 @@ pub const DEFAULT_FALSE_POS: f64 = 0.01;
 
 /// A Bloom filter implementation that tracks the total number of set bits along
 /// with the underlying bit vector and hashing functions, Murmur3 and xxHash.
-pub struct BloomFilter<R: BuildHasher, S: BuildHasher> {
+pub struct BloomFilter {
   bit_vec: BitVec,
   num_hashes: u64,
   set_bits: u64,
-  murmur_hasher: R,
-  xx_hasher: S,
+  murmur_hasher: RandomState<murmur3::Murmur3_x64_128>,
+  xx_hasher: RandomState<xx::XXHash64>,
 }
 
-impl BloomFilter<RandomState<murmur3::Murmur3_x64_128>, RandomState<xx::XXHash64>> {
+impl BloomFilter {
   /// Return a new Bloom filter with a given number of approximate items to set.
   /// The default false positive probability is set and defined by DEFAULT_FALSE_POS.
-  pub fn new(approx_items: u64) -> Self {
+  pub fn new(approx_items: u64) -> BloomFilter {
     BloomFilter::new_with_rate(approx_items, DEFAULT_FALSE_POS)
   }
 
   /// Return a new Bloom filter with a given number of approximate items to set
   /// and a desired false positive probability.
-  pub fn new_with_rate(approx_items: u64, fp_prob: f64) -> Self {
+  pub fn new_with_rate(approx_items: u64, fp_prob: f64) -> BloomFilter {
     let num_bits = optimal_num_bits(approx_items, fp_prob);
     let num_hashes = optimal_num_hashes(num_bits, approx_items);
 
@@ -66,11 +66,7 @@ impl BloomFilter<RandomState<murmur3::Murmur3_x64_128>, RandomState<xx::XXHash64
   }
 }
 
-impl<R, S> BloomFilter<R, S>
-where
-  R: BuildHasher,
-  S: BuildHasher,
-{
+impl BloomFilter {
   /// Set an object in the Bloom filter. This operation is idempotent in regards
   /// to each unique object. Each object must implement the Hash trait.
   pub fn set<T: Hash>(&mut self, obj: &T) {
