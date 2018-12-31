@@ -1,4 +1,12 @@
-# rsbloom
+# rsbloom &emsp; [![Build Status]][travis] [![Latest Version]][crates.io] [![Rustc Version]][rustc] [![License]][crates.io]
+
+[Build Status]: https://travis-ci.org/alexanderbez/rust-bloom.svg?branch=master
+[travis]: https://travis-ci.org/alexanderbez/rust-bloom
+[Latest Version]: https://img.shields.io/crates/v/rsbloom.svg
+[crates.io]: https://crates.io/crates/rsbloom
+[Rustc Version]: https://img.shields.io/badge/rustc-1.31+-blue.svg
+[rustc]: https://blog.rust-lang.org/2018/12/06/Rust-1.31-and-rust-2018.html
+[License]: https://img.shields.io/crates/l/rsbloom.svg
 
 A simple implementation of a Bloom filter, a space-efficient probabilistic data
 structure.
