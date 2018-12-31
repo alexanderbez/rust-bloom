@@ -10,6 +10,10 @@ readme = "README.md"
 keywords = ["bloom", "filter", "bloomfilter", "bloomfilters"]
 license = "MIT"
 
+[badges]
+travis-ci = { repository = "alexanderbez/rust-bloom" }
+maintenance = { status = "passively-maintained" }
+
 [lib]
 name = "rsbloom"
 
@@ -17,3 +21,10 @@ name = "rsbloom"
 bit-vec = "0.5.0"
 fasthash = "0.3"
 rand = "0.6.1"
+
+[dev-dependencies]
+criterion = "0.2.6"
+
+[[bench]]
+name = "bench_main"
+harness = false
