@@ -64,9 +64,7 @@ impl BloomFilter {
       xx_hasher: RandomState::<xx::XXHash64>::new(),
     }
   }
-}
 
-impl BloomFilter {
   /// Set an object in the Bloom filter. This operation is idempotent in regards
   /// to each unique object. Each object must implement the Hash trait.
   pub fn set<T: Hash>(&mut self, obj: &T) {
